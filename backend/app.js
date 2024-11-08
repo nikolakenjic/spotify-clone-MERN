@@ -5,6 +5,9 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
+import AppError from './utils/appError.js';
+import errorHandler from './utils/errorHandler.js';
+
 // Routes
 import userRoutes from './routes/userRoute.js';
 import adminRoutes from './routes/adminRoute.js';
@@ -35,5 +38,13 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/songs', songRoutes);
 app.use('/api/v1/albums', albumRoutes);
 app.use('/api/v1/stats', statRoutes);
+
+// Handling undefined routes
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
+
+// Global error handling middleware
+app.use(errorHandler);
 
 export default app;
