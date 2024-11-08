@@ -1,7 +1,24 @@
 import app from './app.js';
+import { connectMongoDB } from './lib/connectDB.js';
 
-const PORT = process.env.PORT;
+const DB = process.env.MONGODB_URL.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on a port: ${PORT}`);
-});
+// Start server
+const PORT = process.env.PORT || 3000;
+
+const startServer = async () => {
+  try {
+    await connectMongoDB(DB);
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}...`);
+    });
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
+};
+
+startServer();
