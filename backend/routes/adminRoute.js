@@ -1,8 +1,20 @@
 import { Router } from 'express';
-import { getAdmin } from '../controllers/adminController.js';
+import {
+  checkAdmin,
+  createAlbum,
+  createSong,
+  deleteAlbum,
+  deleteSong,
+} from '../controllers/adminController.js';
 
 const router = Router();
 
-router.route('/').get(getAdmin);
+router.route('/check').get(checkAdmin);
+
+router.route('/songs').post(createSong);
+router.route('/songs/:id').delete(deleteSong);
+
+router.route('/albums').post(createAlbum);
+router.route('/albums/:id').delete(deleteAlbum);
 
 export default router;

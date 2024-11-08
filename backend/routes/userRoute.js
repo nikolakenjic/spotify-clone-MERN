@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { getUsers } from '../controllers/userController.js';
+import { getAllUsers, getMessages } from './../controllers/userController.js';
 
 const router = Router();
 
-router.route('/').get(getUsers);
+router.route('/').get(getAllUsers);
+router.route('/messages/:userId').get(getMessages);
 
 export default router;

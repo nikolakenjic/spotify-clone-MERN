@@ -35,8 +35,8 @@ app.use(cors());
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/songs', songRoutes);
 app.use('/api/v1/albums', albumRoutes);
+app.use('/api/v1/songs', songRoutes);
 app.use('/api/v1/stats', statRoutes);
 
 // Handling undefined routes
