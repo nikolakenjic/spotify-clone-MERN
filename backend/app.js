@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import { clerkMiddleware } from '@clerk/express';
 
 import AppError from './utils/appError.js';
 import errorHandler from './utils/errorHandler.js';
@@ -29,7 +30,8 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.use(express.json());
+app.use(express.json()); // parse req.body
+app.use(clerkMiddleware()); // add auth ti req.obj
 app.use(cors());
 
 app.use('/api/v1/users', userRoutes);
