@@ -41,7 +41,7 @@ const imageKit = new ImageKit({
 });
 
 app.use(express.json()); // parse req.body
-app.use(clerkMiddleware()); // add auth ti req.obj
+// app.use(clerkMiddleware()); // add auth ti req.obj
 app.use(cors());
 
 // ImageKIT
