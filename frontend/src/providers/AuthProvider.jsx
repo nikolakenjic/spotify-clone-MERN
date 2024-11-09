@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
     const initAuth = async () => {
       try {
         const token = getToken();
+
         updateApiToken(token);
       } catch (error) {
         console.log('Error in auth provider', error);
