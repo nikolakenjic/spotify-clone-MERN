@@ -1,7 +1,40 @@
 import { Card, CardContent } from '@/components/ui/card';
+import fetchUrl from '@/lib/axios';
+import { useUser } from '@clerk/clerk-react';
 import { Loader } from 'lucide-react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthCallbackPage = () => {
+  const navigate = useNavigate();
+  const { isLoaded, user } = useUser();
+
+  console.log('isLoaded:', isLoaded, 'User:', user);
+
+  useEffect(() => {
+    if (!isLoaded || !user) return;
+
+    const syncUser = async () => {
+      try {
+        await fetchUrl.post('/auth/callback', {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          imageUrl: user.imageUrl,
+        });
+      } catch (error) {
+        console.log(
+          'Error in auth callback',
+          error.response ? error.response.data : error.message
+        );
+      } finally {
+        navigate('/');
+      }
+    };
+
+    syncUser();
+  }, [isLoaded, navigate, user]);
+
   return (
     <div className="h-screen w-full bg-black flex items-center justify-center">
       <Card className="w-[90%] max-w-md bg-zinc-900 border-zinc-800">
