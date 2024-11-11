@@ -6,7 +6,8 @@
   "scripts": {
     "start:dev": "nodemon backend/server.js",
     "start:prod": "cross-env NODE_ENV=production node backend/server.js",
-    "seed:songs": "node backend/seeds/songs.js"
+    "seed:songs": "node backend/seeds/songs.js",
+    "seed:albums": "node backend/seeds/albums.js"
   },
   "keywords": [],
   "author": "",
