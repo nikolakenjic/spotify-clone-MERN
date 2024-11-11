@@ -1,25 +1,28 @@
-import { Card, CardContent } from '@/components/ui/card';
-import fetchUrl from '@/lib/axios';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import { Loader } from 'lucide-react';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import fetchUrl from '@/lib/axios';
+import { Card, CardContent } from '@/components/ui/card';
 
 const AuthCallbackPage = () => {
   const navigate = useNavigate();
   const { isLoaded, user } = useUser();
+  const syncAttempted = useRef(false);
 
-  console.log('isLoaded:', isLoaded, 'User:', user);
+  // console.log('isLoaded:', isLoaded, 'User:', user);
 
   useEffect(() => {
-    if (!isLoaded || !user) return;
+    if (!isLoaded || !user || syncAttempted.current) return;
 
     const syncUser = async () => {
       try {
+        // Prevent useEffect run twice
+        syncAttempted.current = true;
+
         await fetchUrl.post('/auth/callback', {
           id: user.id,
           firstName: user.firstName,
-          lastName: user.lastName,
           imageUrl: user.imageUrl,
         });
         console.log('User synced successfully');
