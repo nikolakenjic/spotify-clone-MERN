@@ -1,5 +1,16 @@
+import * as dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import mongoose from 'mongoose';
-import { Song } from '../models/songModel';
+import { connectMongoDB } from '../lib/connectDB.js';
+import { Song } from '../models/songModel.js';
+
+// Get the current directory from the import.meta.url
+const __filename = fileURLToPath(import.meta.url);
+const __config = path.dirname(__filename);
+// Use path.resolve to construct the path to the .env file
+dotenv.config({ path: path.resolve(__config, './../../.env') });
 
 const songs = [
   {
@@ -130,9 +141,14 @@ const songs = [
   },
 ];
 
+const DB = process.env.MONGODB_URL.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+);
+
 const seedSongs = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URL);
+    await connectMongoDB(DB);
 
     // Clear existing songs
     await Song.deleteMany({});

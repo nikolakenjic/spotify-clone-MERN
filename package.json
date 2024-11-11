@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start:dev": "nodemon backend/server.js",
-    "start:prod": "cross-env NODE_ENV=production node backend/server.js"
+    "start:prod": "cross-env NODE_ENV=production node backend/server.js",
+    "seed:songs": "node backend/seeds/songs.js"
   },
   "keywords": [],
   "author": "",
