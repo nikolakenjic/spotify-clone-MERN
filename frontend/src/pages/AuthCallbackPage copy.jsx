@@ -16,16 +16,37 @@ const AuthCallbackPage = () => {
 
     const syncUser = async () => {
       try {
-        await fetchUrl.post('/auth/callback', {
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          imageUrl: user.imageUrl,
-        });
+        // await fetchUrl.post('/auth/callback', {
+        //   id: user.id,
+        //   firstName: user.firstName,
+        //   lastName: user.lastName,
+        //   imageUrl: user.imageUrl,
+        // });
+
+        const response = await fetch(
+          'http://localhost:3000/api/v1/auth/callback',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              id: user.id,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              imageUrl: user.imageUrl,
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
         console.log('User synced successfully');
       } catch (error) {
-        console.error(
-          'Error in auth callback:',
+        console.log(
+          'Error in auth callback',
           error.response ? error.response.data : error.message
         );
       } finally {
