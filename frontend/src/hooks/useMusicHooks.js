@@ -57,7 +57,7 @@ export const useFetchAlbumById = (id) => {
   return useQuery({
     queryKey: ['album', id],
     queryFn: () => fetchAlbumById(id),
-    enabled: !!id, // Only run the query if `id` is truthy
+    enabled: !!id,
   });
 };
 
