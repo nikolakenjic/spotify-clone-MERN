@@ -4,10 +4,11 @@ import {
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
 import { Outlet } from 'react-router-dom';
-import { LeftSidebar } from './components';
+import { LeftSidebar, RightSidebar } from './components';
 
 const MainLayout = () => {
   const isMobile = false;
+
   return (
     <div className="h-screen bg-black text-white flex flex-col">
       <ResizablePanelGroup
@@ -30,16 +31,15 @@ const MainLayout = () => {
           <Outlet />
         </ResizablePanel>
 
-        <ResizableHandle className="w-2 bg-black rounded-lg transition-colors" />
-
         {/* Right Sidebar */}
+        <ResizableHandle className="w-2 bg-black rounded-lg transition-colors" />
         <ResizablePanel
           defaultSize={20}
           minSize={0}
           maxSize={25}
           collapsedSize={0}
         >
-          Right Sidebar
+          <RightSidebar />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
