@@ -1,15 +1,16 @@
 import PlaylistSkeleton from '@/components/skeletons/PllaylistSkeleton';
 import { buttonVariants } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useFetchAlbums } from '@/hooks/useMusicHooks';
 import { cn } from '@/lib/utils';
 import { SignedIn } from '@clerk/clerk-react';
 
 import { HomeIcon, Library, MessageCircle } from 'lucide-react';
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 
 const LeftSidebar = () => {
-  const isLoading = true;
+  const { data: albums, isLoading, isError, error } = useFetchAlbums();
 
   return (
     <div className="h-full flex flex-col gap-2">

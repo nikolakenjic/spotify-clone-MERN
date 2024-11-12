@@ -1,4 +1,4 @@
-import fetchUrl from '@/lib/axios';
+import fetchUrl from '@/api/axios';
 import { useAuth } from '@clerk/clerk-react';
 import { Loader } from 'lucide-react';
 import { useEffect, useState } from 'react';

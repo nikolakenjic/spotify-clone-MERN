@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import { Loader } from 'lucide-react';
-import fetchUrl from '@/lib/axios';
+import fetchUrl from '@/api/axios';
 import { Card, CardContent } from '@/components/ui/card';
 
 const AuthCallbackPage = () => {

@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
-import fetchUrl from '@/lib/axios';
+import fetchUrl from '@/api/axios';
 import { useUser } from '@clerk/clerk-react';
 import { Loader } from 'lucide-react';
 import { useEffect } from 'react';
