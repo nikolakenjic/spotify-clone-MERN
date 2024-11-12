@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom';
 const LeftSidebar = () => {
   const { data: albums, isLoading, isError, error } = useFetchAlbums();
 
+  console.log(albums);
+
   return (
     <div className="h-full flex flex-col gap-2">
       {/* Navigation Menu */}
