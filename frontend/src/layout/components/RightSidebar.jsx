@@ -1,7 +1,11 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useFetchUsers } from '@/hooks/useChatHooks';
 import { Users } from 'lucide-react';
 
 const RightSidebar = () => {
+  const { data: users, isLoading } = useFetchUsers();
+  console.log(users);
+
   return (
     <div className="h-full bg-zinc-900 rounded-lg flex flex-col">
       <div className="p-4 flex justify-between items-center border-b border-zinc-800">
