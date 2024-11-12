@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { AuthCallbackPage, ChatPage, HomePage } from './pages';
+import { AlbumPage, AuthCallbackPage, ChatPage, HomePage } from './pages';
 import { AuthenticateWithRedirectCallback } from '@clerk/clerk-react';
 import MainLayout from './layout/MainLayout';
 
@@ -19,6 +19,7 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/chat" element={<ChatPage />} />
+          <Route path="/albums/:albumId" element={<AlbumPage />} />
         </Route>
       </Routes>
     </>
