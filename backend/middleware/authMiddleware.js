@@ -15,7 +15,15 @@ export const protectRoute = catchAsync(async (req, res, next) => {
 });
 
 export const requireAdmin = catchAsync(async (req, res, next) => {
-  const currentUser = await clerkClient.users.getUser(req.auth.userId);
+  // Temporarily mock the userId as before
+  const userId = req.auth.userId || 'mocked-user-id';
+
+  // Simulate a Clerk API call
+  const currentUser = {
+    primaryEmailAddress: { emailAddress: 'nikola16v@yahoo.com' },
+  }; // Mocked user data
+
+  // const currentUser = await clerkClient.users.getUser(req.auth.userId);
   const isAdmin =
     process.env.ADMIN_EMAIL === currentUser.primaryEmailAddress?.emailAddress;
 

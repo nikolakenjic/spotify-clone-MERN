@@ -17,5 +17,5 @@ export const deleteAlbum = catchAsync(async (req, res, next) => {
 });
 
 export const checkAdmin = catchAsync(async (req, res, next) => {
-  res.send('admin');
+  res.status(200).json({ admin: true });
 });
