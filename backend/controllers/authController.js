@@ -11,5 +11,5 @@ export const authCallback = catchAsync(async (req, res, next) => {
     await User.create({ clerkId: id, firstName, imageUrl });
   }
 
-  res.status(200).json({ status: 'success' });
+  res.status(201).json({ status: 'success' });
 });

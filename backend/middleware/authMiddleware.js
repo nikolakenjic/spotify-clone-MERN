@@ -2,6 +2,10 @@ import { clerkClient } from '@clerk/express';
 import catchAsync from '../utils/catchAsync.js';
 
 export const protectRoute = catchAsync(async (req, res, next) => {
+  // Temporarily mock the userId if it's not coming from Clerk
+  if (!req.auth || !req.auth.userId) {
+    req.auth = { userId: '5615618513215' }; // Add a mocked userId for testing
+  }
   if (!req.auth.userId) {
     return res
       .status(401)

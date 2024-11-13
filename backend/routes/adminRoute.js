@@ -6,12 +6,13 @@ import {
   deleteAlbum,
   deleteSong,
 } from '../controllers/adminController.js';
+import { protectRoute } from '../middleware/authMiddleware.js';
 
 const router = Router();
 
 router.route('/check').get(checkAdmin);
 
-router.route('/songs').post(createSong);
+router.route('/songs').post(protectRoute, createSong);
 router.route('/songs/:id').delete(deleteSong);
 
 router.route('/albums').post(createAlbum);
