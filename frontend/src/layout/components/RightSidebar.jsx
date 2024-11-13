@@ -1,11 +1,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useFetchUsers } from '@/hooks/useChatHooks';
-import { Users } from 'lucide-react';
+import { Music, Users } from 'lucide-react';
 
 const RightSidebar = () => {
   const { data: users, isLoading } = useFetchUsers();
   const onlineUser = true;
+
+  const isPlaying = true;
 
   const usersList = users?.map((user) => {
     console.log(user);
@@ -33,9 +35,9 @@ const RightSidebar = () => {
               <span className="font-medium text-sm text-white">
                 {user.firstName}
               </span>
-              {/* {isPlaying && (
+              {isPlaying && (
                 <Music className="size-3.5 text-emerald-400 shrink-0" />
-              )} */}
+              )}
             </div>
 
             {/* {isPlaying ? (
