@@ -1,4 +1,4 @@
-import { useTrendingSongs } from '@/hooks/useMusicHooks';
+import { useMadeForYouSongs, useTrendingSongs } from '@/hooks/useMusicHooks';
 import Topbar from '@/components/layout/Topbar';
 import FeaturedSection from '@/components/common/FeaturedSection';
 import SectionGrid from '@/components/common/SectionGrid';
@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 const HomePage = () => {
   const { data: madeForYouSongs, isLoading: isLoadingSongsForYou } =
-    useTrendingSongs();
+    useMadeForYouSongs();
   const { data: trendingSongs, isLoading: isLoadingTrendingSongs } =
     useTrendingSongs();
 
