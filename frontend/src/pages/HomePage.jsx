@@ -1,3 +1,4 @@
+import FeaturedSection from '@/components/common/FeaturedSection';
 import Topbar from '@/components/layout/Topbar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 // import TestClerk from '@/TestClerk';
@@ -11,7 +12,7 @@ const HomePage = () => {
           <h1 className="text-2xl sm:text-3xl font-bold mb-6">
             Good afternoon
           </h1>
-          {/* <FeaturedSection /> */}
+          <FeaturedSection />
 
           {/* <div className="space-y-8">
             <SectionGrid
