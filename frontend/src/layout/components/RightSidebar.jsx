@@ -9,6 +9,7 @@ import { Music, Users } from 'lucide-react';
 const RightSidebar = () => {
   const { user: currentUser } = useUser();
   const { data: users, isLoading } = useFetchUsers();
+
   console.log('Current User', currentUser);
 
   const onlineUser = true;
