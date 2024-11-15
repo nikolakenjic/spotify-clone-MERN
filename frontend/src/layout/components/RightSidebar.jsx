@@ -1,10 +1,16 @@
+import { useUser } from '@clerk/clerk-react';
+import { useFetchUsers } from '@/hooks/useChatHooks';
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { useFetchUsers } from '@/hooks/useChatHooks';
+import LoginPrompt from '@/components/common/LoginPrompt';
 import { Music, Users } from 'lucide-react';
 
 const RightSidebar = () => {
+  const { user: currentUser } = useUser();
   const { data: users, isLoading } = useFetchUsers();
+  console.log('Current User', currentUser);
+
   const onlineUser = true;
 
   const isPlaying = true;
@@ -66,6 +72,8 @@ const RightSidebar = () => {
           <h2 className="font-semibold">What they&apos;re listening to</h2>
         </div>
       </div>
+
+      {!currentUser && <LoginPrompt />}
 
       <ScrollArea className="flex-1">
         <div className="p-4 space-y-4">{usersList}</div>
