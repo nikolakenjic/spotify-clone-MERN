@@ -10,7 +10,7 @@ const RightSidebar = () => {
   const isPlaying = true;
 
   const usersList = users?.map((user) => {
-    console.log(user);
+    // console.log(user);
     return (
       <div
         key={user._id}

@@ -16,9 +16,9 @@ router.use(protectRoute, requireAdmin);
 router.route('/check').get(checkAdmin);
 
 router.route('/songs').post(createSong);
-router.route('/songs/:id').delete(deleteSong);
+router.route('/songs/:songId').delete(deleteSong);
 
 router.route('/albums').post(createAlbum);
-router.route('/albums/:id').delete(deleteAlbum);
+router.route('/albums/:albumId').delete(deleteAlbum);
 
 export default router;
