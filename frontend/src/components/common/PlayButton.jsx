@@ -1,23 +1,25 @@
 import { Button } from '../ui/button';
-import { Play } from 'lucide-react';
+import { Pause, Play } from 'lucide-react';
 
-const PlayButton = () => {
+const PlayButton = ({ song }) => {
+  const isPlaying = true;
+  const isCurrentSong = false;
+
   return (
     <div>
       <Button
         size={'icon'}
         className={`absolute bottom-3 right-2 bg-green-500 hover:bg-green-400 hover:scale-105 transition-all 
-        opacity-0 translate-y-2 group-hover:translate-y-0 `}
+				opacity-0 translate-y-2 group-hover:translate-y-0 ${
+          isCurrentSong ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+        }`}
       >
-        {/* {isCurrentSong && isPlaying ? (
-        <Pause className="size-5 text-black" />
+        {isPlaying ? (
+          <Pause className="size-5 text-black" />
         ) : (
-            <Play className="size-5 text-black" />
-            )} */}
-        <Play className="size-5 text-black" />
-        Play
+          <Play className="size-5 text-black" />
+        )}
       </Button>
-      <h1>Play</h1>
     </div>
   );
 };
