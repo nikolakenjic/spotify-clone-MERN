@@ -6,13 +6,19 @@ import { Button } from '@/components/ui/button';
 import { formatDuration } from '@/utils/formatDuration';
 
 import BgGradient from '@/components/customUI/BgGradient';
+import { usePlayerStore } from '@/store/PlayerProvider';
 
 const AlbumPage = () => {
   const { albumId } = useParams();
-
-  const isPlaying = false;
+  const { currentSong, isPlaying, playAlbum, togglePlay } = usePlayerStore();
 
   const { data: currentAlbum, isLoading } = useFetchAlbumById(albumId);
+  console.log(currentAlbum);
+
+  const handlePlayAlbum = (index) => {
+    if (!currentAlbum) return;
+    playAlbum(currentAlbum?.songsList, index);
+  };
 
   if (isLoading) {
     return (
@@ -86,7 +92,7 @@ const AlbumPage = () => {
             {/* Play button */}
             <div className="px-6 pb-4 flex items-center gap-6">
               <Button
-                // onClick={handlePlayAlbum}
+                onClick={handlePlayAlbum}
                 size="icon"
                 className="w-14 h-14 rounded-full bg-green-500 hover:bg-green-400 
                 hover:scale-105 transition-all"
