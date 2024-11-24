@@ -59,6 +59,23 @@ export const PlayerProvider = ({ children }) => {
     }
   };
 
+  // Play the previous song in the queue
+  const playPrevious = () => {
+    const prevIndex = currentIndex - 1;
+
+    if (prevIndex >= 0) {
+      const prevSong = queue[prevIndex];
+      // updateActivity(`Playing ${prevSong.title} by ${prevSong.artist}`);
+
+      setCurrentSong(prevSong);
+      setCurrentIndex(prevIndex);
+      setIsPlaying(true);
+    } else {
+      // updateActivity('Idle');
+      setIsPlaying(false);
+    }
+  };
+
   return (
     <PlayerContext.Provider
       value={{
@@ -71,6 +88,7 @@ export const PlayerProvider = ({ children }) => {
         setCurrentSong,
         playAlbum,
         playNext,
+        playPrevious,
       }}
     >
       {children}
